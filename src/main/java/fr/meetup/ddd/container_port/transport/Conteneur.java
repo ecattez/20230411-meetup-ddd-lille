@@ -1,5 +1,7 @@
 package fr.meetup.ddd.container_port.transport;
 
+import fr.meetup.ddd.container_port.transport.quai.ConteneurDéposé;
+
 import java.util.Optional;
 
 public class Conteneur {
@@ -15,7 +17,7 @@ public class Conteneur {
         return Optional.ofNullable(déposéSur);
     }
 
-    public ConteneurDéposé déposerConteneur(IdQuai idQuai) {
+    public ConteneurDéposé déposerSur(IdQuai idQuai) {
         this.déposéSur = idQuai;
 
         return ConteneurDéposé.of(id, déposéSur);

@@ -1,4 +1,9 @@
-package fr.meetup.ddd.container_port.transport;
+package fr.meetup.ddd.container_port.transport.quai;
+
+import fr.meetup.ddd.container_port.transport.ConteneurRepository;
+import fr.meetup.ddd.container_port.transport.EventPublisher;
+import fr.meetup.ddd.container_port.transport.IdConteneur;
+import fr.meetup.ddd.container_port.transport.IdQuai;
 
 public final class DéposerConteneur {
 
@@ -13,9 +18,9 @@ public final class DéposerConteneur {
     public void execute(IdConteneur idConteneur, IdQuai idQuai) {
         conteneurRepository.fromId(idConteneur)
                 .ifPresent(conteneur -> {
-                    ConteneurDéposé conteneurDéposé = conteneur.déposerConteneur(idQuai);
+                    ConteneurDéposé conteneurDéposé = conteneur.déposerSur(idQuai);
                     conteneurRepository.save(conteneur);
-                    eventPublisher.publish(conteneurDéposé);
+                    eventPublisher.publier(conteneurDéposé);
                 });
     }
 }
