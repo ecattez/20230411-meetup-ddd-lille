@@ -21,7 +21,7 @@ public class DéposerUnConteneurTest {
     @Mock
     ConteneurRepository conteneurRepository;
     @InjectMocks
-    Service service;
+    DépotDeConteneur dépotDeConteneur;
 
     @Test
     void le_conteneur_n_existe_pas() {
@@ -30,7 +30,7 @@ public class DéposerUnConteneurTest {
 
         DéposerConteneur commande = new DéposerConteneur(idConteneur, numeroQuai);
 
-        ConteneurNaPasEteTrouvé evenement = (ConteneurNaPasEteTrouvé) service.déposerUnConteneur(commande);
+        ConteneurNaPasEteTrouvé evenement = (ConteneurNaPasEteTrouvé) dépotDeConteneur.déposerUnConteneur(commande);
 
         assertThat(evenement.idConteneur().value()).isEqualTo("8");
     }
@@ -42,7 +42,7 @@ public class DéposerUnConteneurTest {
 
         DéposerConteneur commande = new DéposerConteneur(idConteneur, numeroQuai);
 
-        ConteneurDéposé evenement = (ConteneurDéposé) service.déposerUnConteneur(commande);
+        ConteneurDéposé evenement = (ConteneurDéposé) dépotDeConteneur.déposerUnConteneur(commande);
 
         assertThat(evenement.idConteneur().value()).isEqualTo("8");
         assertThat(evenement.numeroQuai().value()).isEqualTo("12");

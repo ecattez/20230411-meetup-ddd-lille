@@ -1,10 +1,10 @@
 package fr.meetup.ddd.container_port.transport;
 
-public class Service {
+public class DépotDeConteneur {
 
     private final ConteneurRepository conteneurRepository;
 
-    public Service(ConteneurRepository conteneurRepository) {
+    public DépotDeConteneur(ConteneurRepository conteneurRepository) {
         this.conteneurRepository = conteneurRepository;
     }
 
