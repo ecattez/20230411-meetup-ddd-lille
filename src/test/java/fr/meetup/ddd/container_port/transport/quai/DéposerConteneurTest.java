@@ -1,5 +1,8 @@
-package fr.meetup.ddd.container_port.transport;
+package fr.meetup.ddd.container_port.transport.quai;
 
+import fr.meetup.ddd.container_port.transport.Conteneur;
+import fr.meetup.ddd.container_port.transport.ConteneurRepository;
+import fr.meetup.ddd.container_port.transport.EventPublisher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -31,17 +34,20 @@ class DéposerConteneurTest {
 
     @Test
     void déposer_un_conteneur_sur_un_quai() {
+        // given
         when(conteneurRepository.fromId(ID_CONTENEUR))
                 .thenReturn(Optional.of(new Conteneur(ID_CONTENEUR)));
 
+        // when
         déposerConteneur.execute(ID_CONTENEUR, ID_QUAI);
 
+        // then
         InOrder inOrder = inOrder(conteneurRepository, eventPublisher);
 
         inOrder.verify(conteneurRepository)
                 .save(conteneurCaptor.capture());
         inOrder.verify(eventPublisher)
-                .publish(ConteneurDéposé.of(ID_CONTENEUR, ID_QUAI));
+                .publier(ConteneurDéposé.of(ID_CONTENEUR, ID_QUAI));
 
         Conteneur conteneur = conteneurCaptor.getValue();
 

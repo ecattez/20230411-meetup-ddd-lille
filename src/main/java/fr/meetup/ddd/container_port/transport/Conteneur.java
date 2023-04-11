@@ -1,5 +1,7 @@
 package fr.meetup.ddd.container_port.transport;
 
+import fr.meetup.ddd.container_port.transport.quai.ConteneurDéposé;
+
 import java.util.Optional;
 
 public class Conteneur {
